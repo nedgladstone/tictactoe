@@ -1,0 +1,15 @@
+{
+  "java.completion.favoriteStaticMembers": [
+  ],
+  "java.completion.importOrder": [
+    "java",
+    "javax",
+    "org",
+    "com",
+    "rallydev"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  }
+}
+
