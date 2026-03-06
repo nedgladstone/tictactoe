@@ -1,24 +1,49 @@
+import java.util.Scanner;
+
 public class TicTacToe {
     public static void main(String[] args) {
         Board board = new Board();
+        Scanner scanner = new Scanner(System.in);
+        char currentPlayer = 'X';
         
         System.out.println("Welcome to Tic Tac Toe!");
-        System.out.println("Squares are numbered 1-9 as shown below:");
-        board.display();
+        System.out.println("Players take turns entering a square number (1-9).");
         
-        System.out.println("Demonstrating moves...");
-        System.out.println("Player X moves to position 5:");
-        board.makeMove(5, 'X');
-        board.display();
+        while (true) {
+            board.display();
+            System.out.print("Player " + currentPlayer + ", enter your move (1-9): ");
+            
+            String input = scanner.nextLine().trim();
+            int move;
+            
+            try {
+                move = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number 1-9.");
+                continue;
+            }
+            
+            if (!board.makeMove(move, currentPlayer)) {
+                System.out.println("Invalid move. Square is either taken or out of range.");
+                continue;
+            }
+            
+            char winner = board.checkWinner();
+            if (winner != ' ') {
+                board.display();
+                System.out.println(winner + " wins!");
+                break;
+            }
+            
+            if (board.isFull()) {
+                board.display();
+                System.out.println("CAT");
+                break;
+            }
+            
+            currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+        }
         
-        System.out.println("Player O moves to position 1:");
-        board.makeMove(1, 'O');
-        board.display();
-        
-        System.out.println("Player X moves to position 9:");
-        board.makeMove(9, 'X');
-        board.display();
-        
-        System.out.println("Board demonstration complete.");
+        scanner.close();
     }
 }
