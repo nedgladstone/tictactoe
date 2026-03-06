@@ -68,6 +68,27 @@ public class Game {
     }
     
     public boolean checkWin() {
+        int[][] winningCombinations = {
+            {1, 2, 3}, // Top row
+            {4, 5, 6}, // Middle row
+            {7, 8, 9}, // Bottom row
+            {1, 4, 7}, // Left column
+            {2, 5, 8}, // Middle column
+            {3, 6, 9}, // Right column
+            {1, 5, 9}, // Diagonal top-left to bottom-right
+            {3, 5, 7}  // Diagonal top-right to bottom-left
+        };
+        
+        for (int[] combo : winningCombinations) {
+            char a = board.getCell(combo[0]);
+            char b = board.getCell(combo[1]);
+            char c = board.getCell(combo[2]);
+            
+            if (a != ' ' && a == b && b == c) {
+                return true;
+            }
+        }
+        
         return false;
     }
     
