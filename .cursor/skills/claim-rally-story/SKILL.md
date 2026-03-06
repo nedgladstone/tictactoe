@@ -33,11 +33,11 @@ Before starting, you need:
    - Push that commit to GitHub.
    - Create a pull request in GitHub, specifying: --title (the same text as the commit message), --body (the description of the story, formatted with GitHub Flavored Markdown, GFM), --head (the branch name), and --base (master) so that gh doesn't need to prompt for any additional information.
      - Convert HTML from Rally description to GFM (e.g., `<ul><li>` → `- `, `<strong>` → `**`, `<p>` → newlines)
-     - Include a link to the Rally story at the top of the body using the `_ref` value from `getRallyArtifactDetails`
+     - Include a link to the Rally story at the top of the body using the story's `ObjectID` from `getRallyArtifactDetails` in this URL format: `https://rally1.rallydev.com/#/835582996685d/teamboard?detail=%2Fuserstory%2F<ObjectID>%2Fdetails`
      - Use a HEREDOC to preserve formatting in the body:
        ```bash
        gh pr create --title "US123: Story name" --body "$(cat <<'EOF'
-       **Rally Story:** [US123](https://rally1.rallydev.com/slm/webservice/v2.0/hierarchicalrequirement/835582998077) Story name
+       **Rally Story:** [US123](https://rally1.rallydev.com/#/835582996685d/teamboard?detail=%2Fuserstory%2F835582998077%2Fdetails) Story name
 
        Story description here...
        
