@@ -97,18 +97,27 @@ Before starting, you need:
 
 ### 5. Task Completion Check
 
-1. **CHECKPOINT**: Ask the user if they consider the task complete:
+1. **CHECKPOINT**: Ask the user if they would like to run the app in a terminal:
+   - If they say yes, use the following command to open an external terminal and run the app:
+     ```bash
+     osascript -e 'tell application "Terminal" to do script "cd <project_directory> && <run_command>"'
+     ```
+   - Replace `<project_directory>` with the actual workspace path
+   - Replace `<run_command>` with the appropriate command to run the app (e.g., `java ClassName`, `npm start`, etc.)
+   - Wait for the user to finish testing before proceeding
+
+2. **CHECKPOINT**: Ask the user if they consider the task complete:
    ```
    Task [TA...] implementation is complete.
    
    Do you consider this task complete? (If not, let me know what needs adjustment.)
    ```
 
-2. If user says no:
+3. If user says no:
    - Get feedback on what needs to change
    - Loop back to appropriate step (2, 3, or 4)
 
-3. If user says yes:
+4. If user says yes:
    - Review and commit changes:
      - Run `git status` and `git diff` to show the user all changes
      - Present the changes and ask:
